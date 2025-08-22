@@ -158,8 +158,14 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ message, isTyping = fa
             ? "bg-primary text-primary-foreground ml-auto" 
             : "bg-muted text-foreground"
         )}>
-          {/* Message Text */}
-          <div className="text-sm leading-relaxed">
+          {/* Message Text or Image */}
+          {message.type === 'image' && message.imageUrl ? (
+            <div className="space-y-2">
+              <img src={message.imageUrl} alt={message.caption || 'Graph'} className="rounded-md max-h-96 object-contain" />
+              {message.caption && <div className="text-xs text-muted-foreground">{message.caption}</div>}
+            </div>
+          ) : (
+            <div className="text-sm leading-relaxed">
             {isTyping ? (
               <div className="flex items-center space-x-1">
                 <span>Mithaas is typing</span>
@@ -172,7 +178,8 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ message, isTyping = fa
             ) : (
               renderFormattedContent(message.content)
             )}
-          </div>
+            </div>
+          )}
 
           {/* Analytics/Chart sections removed for backend-based replies */}
         </div>

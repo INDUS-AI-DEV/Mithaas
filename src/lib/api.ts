@@ -28,4 +28,13 @@ export async function postChat(req: ChatRequest, signal?: AbortSignal): Promise<
   return res.json();
 }
 
+export async function getGraphPng(graphId: string, signal?: AbortSignal): Promise<string> {
+  const res = await fetch(`${API_BASE_URL}/graph/${graphId}`, { method: 'GET', signal });
+  if (!res.ok) {
+    throw new Error(`Graph API error ${res.status}`);
+  }
+  const blob = await res.blob();
+  return URL.createObjectURL(blob);
+}
+
 

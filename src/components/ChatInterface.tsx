@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChatMessage } from './ChatMessage';
 import { ChatInput } from './ChatInput';
 import { Message } from '../types';
-import { postChat } from '../lib/api';
+import { postChat, getGraphPng } from '../lib/api';
 
 interface ChatInterfaceProps {
   messages: Message[];
@@ -57,6 +57,32 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ messages, onAddMes
       };
 
       onAddMessage(botMessage);
+
+      // If graphs provided, fetch and append images
+      if (Array.isArray(res.graphs) && res.graphs.length > 0) {
+        for (const graphId of res.graphs) {
+          try {
+            const url = await getGraphPng(graphId);
+            onAddMessage({
+              id: `${Date.now()}-${graphId}`,
+              content: '',
+              sender: 'bot',
+              timestamp: new Date(),
+              type: 'image',
+              imageUrl: url,
+              caption: `Graph ${graphId}`
+            });
+          } catch (e) {
+            onAddMessage({
+              id: `${Date.now()}-${graphId}-err`,
+              content: `Failed to load graph ${graphId}`,
+              sender: 'bot',
+              timestamp: new Date(),
+              type: 'text'
+            });
+          }
+        }
+      }
     } catch (err: any) {
       setIsTyping(false);
       const errorMessage: Message = {

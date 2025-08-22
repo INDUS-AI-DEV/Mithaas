@@ -3,9 +3,9 @@ export interface Message {
   content: string;
   sender: 'user' | 'bot';
   timestamp: Date;
-  type: 'text' | 'analytics' | 'chart';
-  analyticsData?: AnalyticsData;
-  chartData?: ChartData;
+  type: 'text' | 'image';
+  imageUrl?: string; // when type === 'image'
+  caption?: string;
 }
 
 export interface AnalyticsData {
