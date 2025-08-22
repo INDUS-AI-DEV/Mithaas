@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  BarChart3, 
+  // BarChart3, 
   MessageSquare, 
-  FileText, 
+  // FileText, 
   Settings, 
   History, 
   LogOut, 
@@ -20,9 +20,9 @@ interface SidebarProps {
 }
 
 const menuItems = [
-  { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
+  // { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
   { id: 'chatbot', label: 'Chatbot', icon: MessageSquare },
-  { id: 'reports', label: 'Reports', icon: FileText },
+  // { id: 'reports', label: 'Reports', icon: FileText },
   { id: 'settings', label: 'Settings', icon: Settings },
   { id: 'history', label: 'Conversation History', icon: History },
 ];

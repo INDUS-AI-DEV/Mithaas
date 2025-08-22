@@ -37,7 +37,7 @@ function App() {
     if (messages.length === 0) {
       const welcomeMessage: Message = {
         id: 'welcome',
-        content: 'Hello! I\'m Mithaas, your AI-powered analytics assistant. I can help you with loan recovery data, generate reports, and provide insights. What would you like to know?',
+        content: 'Hello! I\'m MithaasGenie, your AI-powered analytics assistant. I can help you with any kind of analytics related to Mithaas. What would you like to know?',
         sender: 'bot',
         timestamp: new Date(),
         type: 'text'
